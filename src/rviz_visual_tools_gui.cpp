@@ -55,8 +55,10 @@ RvizVisualToolsGui::RvizVisualToolsGui(QWidget* parent) : rviz::Panel(parent)
 {
   // Create a push button
   btn_next_ = new QPushButton(this);
-  btn_next_->setText("Next");
-  connect(btn_next_, SIGNAL(clicked()), this, SLOT(moveNext()));
+  btn_next_->setText("Driver");
+  // connect(btn_next_, SIGNAL(clicked()), this, SLOT(moveNext()));
+  connect(btn_next_, SIGNAL(clicked()), this, SLOT(launchDriver()));
+
 
   // Create a push button
   btn_auto_ = new QPushButton(this);
@@ -93,6 +95,11 @@ RvizVisualToolsGui::RvizVisualToolsGui(QWidget* parent) : rviz::Panel(parent)
 void RvizVisualToolsGui::moveNext()
 {
   remote_reciever_.publishNext();
+}
+
+void RvizVisualToolsGui::launchDriver()
+{
+    system("gnome-terminal -x bash -c '/home/ars-lab/ws_windshifter/doc/00launch_js__.sh 0'&");
 }
 
 void RvizVisualToolsGui::moveAuto()
